@@ -19,10 +19,14 @@ int my_cmp(int a, int b){
 		return 0;
 	return 1;
 }
-void id_swap(t_list *a, t_list *b){
+
+void list_swap(t_list *a, t_list *b){
 	int tmp_id = a->id;
+	char *tmp_name = a->name;
 	a->id = b->id;
+	a->name = b->name;
 	b->id = tmp_id;
+	b->name = tmp_name;
 }
 
 t_list *makeNewList(int id, char *name){
@@ -88,7 +92,7 @@ t_list *sortList (t_list *list){
 		{
 			if(my_cmp(cur->id, cur->next->id) == 0){
 				swapped = 1;
-				id_swap(cur, cur->next);
+				list_swap(cur, cur->next);
 				cur = sortList(list);
 			}
 			cur = cur->next;
